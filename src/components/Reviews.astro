@@ -1,0 +1,123 @@
+---
+const reviews = [
+  {
+    initial: "T",
+    name: "Tassnime A.",
+    text: "Je remercie l'auto-école pour son accompagnement jusqu'à l'obtention de mon permis. Un grand merci à Halima, une monitrice très professionnelle, patiente et à l'écoute, qui prend le temps d'expliquer clairement et de mettre en confiance. Tout s'est toujours bien passé, c'était fluide du début à la fin. Je recommande sans hésitation 🙂",
+  },
+  {
+    initial: "R",
+    name: "Roumeyssa",
+    text: "Je vous conseille cette auto-école et remercie ma monitrice Halima pour sa patience, son écoute et sa gentillesse, elle prend vraiment le temps de bien expliquer et de conseiller, ce qui met tout de suite à l'aise. L'ambiance était très agréable tout au long de la formation, ce qui est également dû à la communication avec le bureau qui était aussi très fluide, aucun souci. Merci beaucoup !",
+  },
+  {
+    initial: "M",
+    name: "Melike D.",
+    text: "Excellente auto-école, les monitrices sont pédagogues, calmes et patientes. La communication s'est toujours bien passée et j'ai pu facilement m'arranger pour avoir les heures de conduite que je voulais avec mes horaires. Merci pour tout !!!",
+  },
+  {
+    initial: "C",
+    name: "Chahinaz K.",
+    text: "J'ai eu mon permis en peu de temps grâce à cette magnifique auto-école, à l'écoute, humble et souriante. Rien à dire : grâce à la monitrice Halima et à Fatiha, mon examen du permis s'est super bien passé suite à l'apprentissage ! Merci beaucoup !",
+  },
+];
+---
+
+<section id="reviews">
+  <div class="container">
+
+    <div class="reviews-header fade-up">
+      <span class="section-label">Témoignages</span>
+      <h2 class="section-title">Ce que disent nos <span>élèves</span></h2>
+      <div class="stars-line">⭐⭐⭐⭐⭐</div>
+      <div class="stars-score">4,8/5 sur Google · 22 avis</div>
+    </div>
+
+    <div class="reviews-track stagger">
+      {reviews.map((r) => (
+        <div class="review-card fade-up">
+          <div class="review-top">
+            <div class="review-avatar">{r.initial}</div>
+            <div>
+              <div class="review-name">{r.name}</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">"{r.text}"</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #reviews { background: var(--dark); }
+
+  .reviews-header { text-align: center; margin-bottom: 48px; }
+
+  .stars-line { font-size: 1.5rem; letter-spacing: 0.08em; margin-top: 8px; }
+
+  .stars-score {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .reviews-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .review-card:hover { border-color: var(--brand); transform: translateY(-3px); }
+
+  .review-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+
+  .review-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    color: #0a0a0a;
+    box-shadow: 0 0 16px rgba(1,204,211,0.5), 0 0 40px rgba(1,204,211,0.15);
+  }
+
+  .review-name {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .review-stars { font-size: 0.85rem; color: #ffd600; }
+
+  .review-text { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+
+  @media (max-width: 900px) {
+    .reviews-track { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .reviews-track {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>

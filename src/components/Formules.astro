@@ -1,0 +1,259 @@
+---
+const TEL = "https://calendly.com/moha-hardflow/30min";
+
+const formules = [
+  {
+    popular: false,
+    highlight: false,
+    name: "Boîte automatique",
+    price: "950€",
+    subPrice: "13 h de conduite",
+    tag: "⚡ Le plus rapide",
+    features: [
+      "13 heures de conduite",
+      "Date d'examen rapide",
+      "Paiement en 3x sans frais",
+      "Accompagnement jusqu'au jour de l'examen",
+      "Planification des leçons selon tes disponibilités",
+    ],
+    cta: "Je réserve mon appel gratuit →",
+  },
+  {
+    popular: true,
+    highlight: false,
+    name: "Boîte manuelle",
+    price: "1 260€",
+    subPrice: "20 h de conduite",
+    tag: "Le plus populaire",
+    features: [
+      "20 heures de conduite",
+      "Conduite de tous les véhicules",
+      "Date d'examen rapide",
+      "Paiement en 3x sans frais",
+      "Accompagnement jusqu'au jour de l'examen",
+      "Planification des leçons selon tes disponibilités",
+    ],
+    cta: "Je réserve mon appel gratuit →",
+  },
+  {
+    popular: false,
+    highlight: false,
+    name: "Conduite accompagnée",
+    price: "1 535€",
+    subPrice: "Formule AAC · 20 h de conduite",
+    tag: "",
+    features: [
+      "20 heures de conduite",
+      "Conduite avec un parent",
+      "Accessible dès 15 ans",
+      "Paiement en 3x sans frais",
+      "Accompagnement jusqu'au jour de l'examen",
+    ],
+    cta: "Je réserve mon appel gratuit →",
+  },
+];
+---
+
+<section id="formules">
+  <div class="container">
+
+    <div class="formules-header fade-up">
+      <span class="section-label">Nos offres</span>
+      <h2 class="section-title">Choisis ta <span>formule</span></h2>
+      <div class="urgency-badge fade-up">
+        <span class="urgency-dot"></span>
+        Plus que quelques places restantes
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      {formules.map((f) => (
+        <div class={`formula-card fade-up${f.popular ? ' popular' : ''}${f.highlight ? ' highlight' : ''}`}>
+          <div class="formula-header">
+            {f.tag
+              ? <span class={`badge-popular${f.highlight ? ' badge-express' : ''}`}>{f.tag}</span>
+              : <div style="height:28px;" />
+            }
+            <div class="formula-name">{f.name}</div>
+            <div class="formula-price">{f.price}</div>
+            <div class="formula-sub-price">{f.subPrice}</div>
+          </div>
+          <div class="formula-body">
+            <ul class="feature-list">
+              {f.features.map((feat) => (
+                <li><span class="check">✓</span> {feat}</li>
+              ))}
+            </ul>
+            <a class="btn btn-full" href={TEL}>
+              {f.cta}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #formules { background: var(--black); }
+
+  .formules-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .urgency-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(1,204,211, 0.1);
+    border: 1px solid rgba(1,204,211, 0.35);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-family: var(--font-title);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #01CCD3;
+    margin-top: 16px;
+  }
+
+  .urgency-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 0 rgba(1,204,211, 0.6);
+    animation: pulse-ring 2s ease-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(1,204,211, 0.6); }
+    60%  { box-shadow: 0 0 0 8px rgba(1,204,211, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(1,204,211, 0); }
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; max-width: 520px; }
+  }
+
+  .formula-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    position: relative;
+  }
+  .formula-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--brand);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .formula-card:hover { border-color: var(--brand); transform: translateY(-6px); box-shadow: 0 16px 48px rgba(1,204,211,0.18), 0 0 0 1px rgba(1,204,211,0.15); }
+  .formula-card:hover::before, .formula-card.popular::before { opacity: 1; }
+
+  .formula-card.highlight {
+    border-color: rgba(1,204,211, 0.35);
+    background: rgba(1,204,211, 0.04);
+  }
+  .formula-card.highlight::before {
+    background: var(--brand);
+    opacity: 1;
+  }
+  .formula-card.highlight:hover {
+    border-color: rgba(1,204,211, 0.7);
+    box-shadow: 0 16px 48px rgba(1,204,211, 0.15);
+  }
+
+  .badge-express {
+    background: var(--brand) !important;
+    color: #0a0a0a !important;
+  }
+
+  .formula-header {
+    padding: 32px 28px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge-popular {
+    display: inline-block;
+    background: var(--brand);
+    color: #0a0a0a;
+    font-family: var(--font-title);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .formula-name {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+
+  .formula-price {
+    font-family: var(--font-title);
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--brand);
+    text-shadow: 0 0 24px rgba(1,204,211,0.6), 0 0 60px rgba(1,204,211,0.2);
+  }
+
+  .formula-sub-price {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .formula-body {
+    padding: 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.97rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .check { color: var(--brand); font-size: 1rem; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+
+  .btn-full { width: 100%; justify-content: center; }
+</style>

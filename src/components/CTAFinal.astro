@@ -1,0 +1,49 @@
+---
+const TEL = "https://calendly.com/moha-hardflow/30min";
+---
+
+<section id="cta-final">
+  <div class="container fade-up">
+    <h2 class="cta-title" style="color:#0a0a0a;">Prêt à passer ton permis ?</h2>
+    <p class="cta-sub" style="color:rgba(0,0,0,0.75);">Appelle AZ Conduite maintenant. Un conseiller répond à toutes tes questions et te garantit une date d'examen dès l'inscription.</p>
+    <a class="btn btn-white btn-lg" href={TEL}>
+      Je réserve mon appel gratuit →
+    </a>
+    <p class="cta-note" style="color:rgba(0,0,0,0.6);">Gratuit · Du lundi au dimanche · Strasbourg</p>
+  </div>
+</section>
+
+<style>
+  #cta-final {
+    background: var(--brand);
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: var(--font-title);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+  }
+
+  .cta-sub {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.07em;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+  }
+</style>
