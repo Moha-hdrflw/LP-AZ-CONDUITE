@@ -35,8 +35,23 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://lp-az-conduite.vercel.app/og-image.png" />
 
-    <!-- Meta Pixel : aucun pixel actif pour l'instant.
-         Pour activer le tracking : coller ici le snippet Meta d'AZ Conduite. -->
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1145675281730873');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1145675281730873&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -73,10 +88,15 @@ const {
       fadeEls.forEach(el => observer.observe(el));
     </script>
 
-    <!-- Tracking des clics sur les CTA → Meta Pixel Lead (inactif tant qu'aucun pixel n'est posé) -->
+    <!-- Tracking des clics sur les CTA → Meta Pixel Lead -->
     <script>
       document.querySelectorAll('a.btn').forEach((btn) => {
         btn.addEventListener('click', () => {
+          // Tant que le lien de reservation n'est pas en place (href="#"),
+          // le clic ne mene nulle part : on n'envoie pas de Lead au pixel
+          // pour ne pas le polluer avec de fausses conversions.
+          const href = btn.getAttribute('href');
+          if (!href || href === '#') return;
           if (typeof fbq !== 'undefined') {
             fbq('track', 'Lead');
           }
