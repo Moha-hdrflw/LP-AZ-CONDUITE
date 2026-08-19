@@ -5,7 +5,7 @@ const TEL = "#";
 
 <nav id="nav">
   <div class="nav-logo">
-    <img src="/logo-az.png" alt="AZ Conduite — Auto-école à Strasbourg" />
+    <img src="/logo-az.png" alt="AZ Conduite — Auto-école à Strasbourg" width="600" height="372" decoding="async" />
   </div>
   <a class="btn nav-cta" href={TEL}>
     Je réserve mon appel gratuit
@@ -22,12 +22,14 @@ const TEL = "#";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(10, 10, 10, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 10, 10, 0.92);
     border-bottom: 1px solid rgba(1,204,211, 0.3);
-  box-shadow: 0 1px 30px rgba(1,204,211,0.08);
+    box-shadow: 0 1px 30px rgba(1,204,211,0.08);
     transition: background 0.3s;
+  }
+
+  #nav.scrolled {
+    background: rgba(10, 10, 10, 0.98);
   }
 
   .nav-logo {
@@ -52,9 +54,13 @@ const TEL = "#";
 
 <script>
   const nav = document.getElementById('nav')!;
+  let scrolled = false;
   window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40
-      ? 'rgba(10, 10, 10, 0.97)'
-      : 'rgba(10, 10, 10, 0.88)';
+    const isScrolled = window.scrollY > 40;
+    // on ne touche au DOM qu'au franchissement du seuil, pas a chaque pixel
+    if (isScrolled !== scrolled) {
+      scrolled = isScrolled;
+      nav.classList.toggle('scrolled', scrolled);
+    }
   }, { passive: true });
 </script>

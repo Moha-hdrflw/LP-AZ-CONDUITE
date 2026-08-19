@@ -53,8 +53,8 @@ a { color: inherit; text-decoration: none; }
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
   opacity: 0.18;
+  will-change: transform;
 }
 
 .orb-1 {
@@ -253,4 +253,21 @@ section { padding: 80px 20px; }
 @media (max-width: 640px) {
   section { padding: 64px 16px; }
   .btn-lg { padding: 17px 30px; font-size: 1.1rem; }
+}
+
+
+/* =============================================
+   ACCESSIBILITE / PERFORMANCE
+   Coupe les animations decoratives si l'utilisateur
+   a demande a reduire les animations (et economise
+   la batterie sur mobile).
+============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .orb, .beam { animation: none; }
 }
