@@ -1,10 +1,10 @@
 {
-  "name": "fast-permis",
+  "name": "lp-az-conduite",
   "type": "module",
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp dist/index.html index.html",
+    "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
