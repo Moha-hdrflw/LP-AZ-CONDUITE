@@ -8,6 +8,7 @@ const formules = [
     highlight: false,
     name: "Boîte automatique",
     price: "950€",
+    oldPrice: "1 050€",
     subPrice: "13 h de conduite",
     tag: "⚡ Le plus rapide",
     features: [
@@ -24,6 +25,7 @@ const formules = [
     highlight: false,
     name: "Boîte manuelle",
     price: "1 260€",
+    oldPrice: "1 360€",
     subPrice: "20 h de conduite",
     tag: "Le plus populaire",
     features: [
@@ -41,6 +43,7 @@ const formules = [
     highlight: false,
     name: "Conduite accompagnée",
     price: "1 535€",
+    oldPrice: "1 635€",
     subPrice: "Formule AAC · 20 h de conduite",
     tag: "",
     features: [
@@ -76,6 +79,7 @@ const formules = [
               : <div style="height:28px;" />
             }
             <div class="formula-name">{f.name}</div>
+            <div class="formula-old-price"><s>{f.oldPrice}</s> <span class="formula-save">-100€</span></div>
             <div class="formula-price">{f.price}</div>
             <div class="formula-sub-price">{f.subPrice}</div>
           </div>
@@ -215,6 +219,29 @@ const formules = [
     text-transform: uppercase;
     letter-spacing: 0.03em;
     margin-bottom: 6px;
+  }
+
+  .formula-old-price {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  .formula-save {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: 100px;
+    background: rgba(1,204,211,0.14);
+    border: 1px solid var(--border-brand);
+    color: var(--brand);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    vertical-align: 2px;
   }
 
   .formula-price {
