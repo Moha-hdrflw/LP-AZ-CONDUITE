@@ -10,7 +10,7 @@ const formules = [
     price: "950€",
     oldPrice: "1 050€",
     subPrice: "13 h de conduite",
-    tag: "⚡ Le plus rapide",
+    tag: "",
     features: [
       "13 heures de conduite",
       "Date d'examen rapide",
@@ -55,6 +55,22 @@ const formules = [
     ],
     cta: "Je réserve mon appel gratuit →",
   },
+  {
+    popular: false,
+    highlight: true,
+    name: "Permis accéléré",
+    price: "+250€",
+    subPrice: "sur la formule de ton choix",
+    tag: "⚡ Le plus rapide",
+    features: [
+      "Heures de conduite en 2 semaines",
+      "Planning intensif dédié",
+      "Date d'examen rapide",
+      "Paiement en 3x sans frais",
+      "Accompagnement jusqu'au jour de l'examen",
+    ],
+    cta: "Je réserve mon appel gratuit →",
+  },
 ];
 ---
 
@@ -79,7 +95,10 @@ const formules = [
               : <div style="height:28px;" />
             }
             <div class="formula-name">{f.name}</div>
-            <div class="formula-old-price"><s>{f.oldPrice}</s> <span class="formula-save">-100€</span></div>
+            {f.oldPrice
+              ? <div class="formula-old-price"><s>{f.oldPrice}</s> <span class="formula-save">-100€</span></div>
+              : <div class="formula-old-price">&nbsp;</div>
+            }
             <div class="formula-price">{f.price}</div>
             <div class="formula-sub-price">{f.subPrice}</div>
           </div>
@@ -143,13 +162,17 @@ const formules = [
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
     max-width: 1100px;
     margin: 0 auto;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; }
+  }
+
+  @media (max-width: 640px) {
     .cards-grid { grid-template-columns: 1fr; max-width: 520px; }
   }
 
@@ -194,7 +217,7 @@ const formules = [
   }
 
   .formula-header {
-    padding: 32px 28px 24px;
+    padding: 28px 20px 22px;
     border-bottom: 1px solid var(--border);
   }
 
@@ -247,7 +270,7 @@ const formules = [
   .formula-price {
     font-family: var(--font-title);
     font-weight: 900;
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--brand);
@@ -261,7 +284,7 @@ const formules = [
   }
 
   .formula-body {
-    padding: 28px;
+    padding: 22px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
